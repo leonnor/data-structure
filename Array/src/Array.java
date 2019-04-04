@@ -73,7 +73,7 @@ public class Array<E> {
     public void add(int index, E e){
 
         if (size == data.length){
-            throw new IllegalArgumentException("Add failed. Array is full.");
+            resize(2 * data.length);
         }
 
         if (index < 0 || index > size){
@@ -97,6 +97,14 @@ public class Array<E> {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         return data[index];
+    }
+
+    public E getLast(){
+        return get(size - 1);
+    }
+
+    public E getFirst(){
+        return get(0);
     }
 
     /**
@@ -153,6 +161,10 @@ public class Array<E> {
             data[i - 1] = data[i];
         }
         size--;
+
+        if (size == data.length / 2){
+            resize(data.length / 2);
+        }
         return ret;
     }
 
@@ -197,5 +209,17 @@ public class Array<E> {
         }
         res.append(']');
         return res.toString();
+    }
+
+    /**
+     * 实现动态数组扩容的方法
+     * @param newCapacity
+     */
+    private void resize(int newCapacity){
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++){
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 }
