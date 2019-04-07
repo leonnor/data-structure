@@ -20,26 +20,45 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public int getSize() {
-        return 0;
+        return array.getSize();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return array.isEmpty();
     }
 
     @Override
     public void enqueue(E e) {
+        array.addLast(e);
+    }
 
+    public int getCapacity(){
+        return array.getCapacity();
     }
 
     @Override
     public E dequeue() {
-        return null;
+        return array.removeFirst();
     }
 
     @Override
     public E getFront() {
-        return null;
+        return array.getFirst();
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        res.append("Queue: ");
+        res.append("front [");
+        for (int i = 0; i < array.getSize(); i++){
+            res.append(array.get(i));
+            if (i != array.getSize() - 1){
+                res.append(", ");
+            }
+        }
+        res.append("] tail");
+        return res.toString();
     }
 }
