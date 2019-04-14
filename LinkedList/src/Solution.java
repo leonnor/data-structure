@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
 /**
- * LeetCode 203
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
@@ -8,24 +12,28 @@
  * }
  */
 class Solution {
-    public ListNode removeElements(ListNode head, int val) {
 
-        while(head != null && head.val == val){
+    public int[] nextLargerNodes(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        List<Integer> list = new ArrayList<>();
+        while(head != null){
+            list.add(head.val);
             head = head.next;
         }
-
-        if (head == null){
-            return null;
-        }
-
-        ListNode prev = head;
-        while(prev.next != null){
-            if (prev.next.val == val){
-                prev.next = prev.next.next;
+        int[] ans = new int[list.size()];
+        for (int i = list.size() - 1; i >= 0; i--){
+            if (stack.isEmpty() || list.get(i) >= stack.peek()){
+                stack.push(list.get(i));
+                ans[i] = 0;
             } else {
-                prev = prev.next;
+                if (!stack.isEmpty() && list.get(i) < stack.peek()){
+                    int val = stack.pop();
+                    stack.push(list.get(i));
+                    stack.push(val);
+                    ans[i] = stack.peek();
+                }
             }
         }
-        return head;
+        return ans;
     }
 }
