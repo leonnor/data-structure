@@ -35,4 +35,80 @@ public class BST<E extends Comparable<E>> {
     public boolean isEmpty(){
         return size == 0;
     }
+
+    /** 向二分搜索树中添加新的元素e*/
+    public void add(E e){
+
+        root = add(root, e);
+    }
+
+    /** 向以node为根的二分搜索树中插入元素E， 递归算法
+     *  返回插入新结点后二分搜索树的根
+     * */
+    private Node add(Node node, E e){
+
+        if (node == null){
+            size++;
+            return new Node(e);
+        }
+        if (e.compareTo(node.e) < 0){
+            node.left = add(node.left, e);
+        } else if (e.compareTo(node.e) > 0){
+            node.right = add(node.right, e);
+        }
+        return node;
+    }
+
+    /** 看二分搜索树中是否包含元素e*/
+    public boolean contains(E e){
+        return contains(root, e);
+    }
+
+    /** 看以node为根的二分搜索树中是否包含元素e，递归算法*/
+    private boolean contains(Node node, E e){
+
+        if (node == null){
+            return false;
+        }
+
+        if (e.compareTo(node.e) == 0){
+            return true;
+        } else if (e.compareTo(node.e) < 0){
+            return contains(node.left, e);
+        } else {
+            return contains(node.right, e);
+        }
+    }
+
+    /** 二分搜索树的前序遍历*/
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    /** 前序遍历以node为根的二分搜索树，递归算法*/
+    private void preOrder(Node node){
+        //递归终止条件
+        if (node == null){
+            return;
+        }
+
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    private void inOrder(Node node){
+
+        if (node == null){
+            return;
+        }
+
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
 }
