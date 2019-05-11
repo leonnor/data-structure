@@ -111,4 +111,18 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.e);
         inOrder(node.right);
     }
+
+    public void postOrder() {
+        preOrder(root);
+    }
+
+    private void postOrder(Node node) {
+
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
 }
