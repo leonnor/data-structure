@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  * className BST
  * description 二分搜索树
@@ -95,6 +97,26 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.e);
         preOrder(node.left);
         preOrder(node.right);
+    }
+
+    /**
+     * 二分搜索树非递归前序遍历
+     */
+    public void preOrderNR(){
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
     }
 
     public void inOrder(){
