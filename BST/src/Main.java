@@ -16,10 +16,10 @@ public class Main {
             bst.add(num);
         }
 
-        bst.preOrder();
-        System.out.println();
-
-        bst.preOrderNR();
-
+//        bst.preOrder();
+//        System.out.println();
+//
+//        bst.preOrderNR();
+        bst.levelOrder();
     }
 }
