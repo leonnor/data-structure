@@ -77,7 +77,7 @@ public class LinkedListMap<K, V> implements Map<K, V> {
         Node prev = dummyHead;
         while (prev.next != null){
             if (prev.next.key.equals(key)){
-                break;;
+                break;
             }
             prev = prev.next;
         }
