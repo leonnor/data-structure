@@ -16,26 +16,26 @@ public class PriorityQueue<E extends Comparable<E>> implements Queue<E> {
 
     @Override
     public int getSize() {
-        return 0;
+        return maxHeap.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return maxHeap.isEmpty();
     }
 
     @Override
     public void enqueue(E e) {
-
+        maxHeap.add(e);
     }
 
     @Override
     public E dequeue() {
-        return null;
+        return maxHeap.extraMax();
     }
 
     @Override
     public E getFront() {
-        return null;
+        return maxHeap.findMax();
     }
 }
